@@ -5,19 +5,23 @@
 int ft_strncmp(const char *str1, const char *str2, size_t n)
 {
     size_t index = 0;
-    printf("%zu\n",n);
-    if (n <= 0)
-          return (0);    
-    while (str1[index] && index < n)
+
+    if (n == 0)
+        return (0);
+
+    while (str1[index] && str2[index] && index < n)
     {
-        printf("i am here\n");
-        if (str1[index] != str2[index] ||index == n - 1)
+        if (str1[index] != str2[index])
             return ((unsigned char)str1[index] - (unsigned char)str2[index]);
         index++;
     }
-    return ((unsigned char)str1[index] - (unsigned char)str2[index]);
-}
+     return ((unsigned char)str1[index] - (unsigned char)str2[index]);
 
+     if (index < n)
+        return ((unsigned char)str1[index] - (unsigned char)str2[index]);
+
+    return (0);
+}
 
 int main(void)
 {
