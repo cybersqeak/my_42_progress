@@ -3,6 +3,15 @@
 
 #include <stdint.h>
 #include <stdio.h>
+
+int ft_atoi(const char *nptr);
+char *ft_itoa(int n);
+size_t ft_strlen(const char *str);
+
+
+size_t  strlcat(char *dst, const char *src, size_t size);
+
+
 typedef struct s_list 
 {
     void *content;
