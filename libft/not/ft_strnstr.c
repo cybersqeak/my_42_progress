@@ -9,6 +9,7 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
     char *set_ptr;
     size_t set_index; //char set_index also works somehow...j
 
+    set_ptr = NULL;    
     if (!big || !little)
         return NULL;
 
@@ -25,16 +26,17 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
             big[set_index] == little[L_index])
         {
             printf("second while statement\n");
-            if (big[set_index] == little[L_index] &&  L_index == 0)
+            if (L_index == 0)
             {
                 printf(" hello\n ");
                 set_ptr = (char*)&big[set_index];
             }
-             if (little[L_index]=='\0')
+           /*  if (little[L_index]=='\0')
             {
                 printf("return! \n");
                 return (set_ptr);
             }
+                */
 
             set_index++,L_index++;
         }
@@ -56,7 +58,7 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 
 int main(void)
 {
-    const char big[] = "gggoogood";
+    const char big[] = "gggoogookdd";
     const char little[] = "good";
     printf("big[0] is : %c\n", big[0]);
     for (size_t i = 0; i < sizeof(big); i++)
