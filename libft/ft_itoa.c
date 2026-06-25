@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 07:35:03 by cmichele          #+#    #+#             */
+/*   Updated: 2026/06/26 07:35:08 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-// first lets count how many index it needs/
 
 #define NEGATIVE -1
 
@@ -41,7 +49,7 @@ char	*check_digits(int n)
 	long	num;
 
 	num = (long)n;
-	count = 0;
+	count = 0   ;
 	sign = 1;
 	if (num < 0)
 	{

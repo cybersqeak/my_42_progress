@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 07:44:22 by cmichele          #+#    #+#             */
+/*   Updated: 2026/06/26 07:44:28 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 char	*ft_strdup(const char *src)

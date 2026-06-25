@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 07:38:00 by cmichele          #+#    #+#             */
+/*   Updated: 2026/06/26 07:38:02 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 t_list	*ft_lstnew(void *content)
 {
@@ -12,7 +22,6 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	(tmp->content) = content;
 	tmp->next = NULL;
-	// printf("\nthe content is : %s\n", (char*)tmp->content);
 	return (tmp);
 }
 /*

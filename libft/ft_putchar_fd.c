@@ -1,7 +1,18 @@
-#include <stdint.h>
-#include <stdio.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 07:42:20 by cmichele          #+#    #+#             */
+/*   Updated: 2026/06/26 07:42:32 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+#include <unistd.h>
+
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);

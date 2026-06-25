@@ -1,8 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 07:41:08 by cmichele          #+#    #+#             */
+/*   Updated: 2026/06/26 07:41:31 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// C program to demonstrate working of memset()
-#include <stdio.h>
-#include <string.h>
-
+#include "libft.h"
 void	*ft_memset(void *ptr, int c, size_t n)
 {
 	unsigned char	*str;
