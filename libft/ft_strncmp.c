@@ -1,36 +1,30 @@
-#include <stdio.h>
+#include "libft.h"
 #include <stdint.h>
+#include <stdio.h>
 #include <string.h>
 
-int ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    size_t index = 0;
+	size_t	i;
 
-    if (n == 0)
-        return (0);
-
-    while (str1[index] && str2[index] && index < n)
-    {
-        if (str1[index] != str2[index])
-            return ((unsigned char)str1[index] - (unsigned char)str2[index]);
-        index++;
-    }
-     return ((unsigned char)str1[index] - (unsigned char)str2[index]);
-
-     if (index < n)
-        return ((unsigned char)str1[index] - (unsigned char)str2[index]);
-
-    return (0);
+	i = 0;
+	while (i < n)
+	{
+		if ((unsigned char)s1[i] != (unsigned char)s2[i] || s1[i] == '\0'
+			|| s2[i] == '\0')
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }
-
-int main(void)
+/*
+int	main(void)
 {
-    const char *str1= "hellow3rld";
-    const char *str2 ="helloworld";
-
-    printf("the return value of my strncmp :%d\n",ft_strncmp(str1,str2,6));
-   printf("the return value of real strncmp :%d\n",strncmp(str1,str2,6));// if i put n value minus. the complier detect it, but not on mine...
-                                                                           
-    return (0);
+	const char *str1= "hellow3rld";
+	const char *str2 ="helloworld";
+	printf("the return (value of my strncmp :%d\n",ft_strncmp(str1,str2,6)));
+   printf("the return (value of real strncmp :%d\n",strncmp(str1,str2,6)));// if i put n value minus. the complier detect it,
+	but not on mine...
+	return (0);
 }
-
+*/

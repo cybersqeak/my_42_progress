@@ -1,7 +1,8 @@
 /*#include <stdio.h>
 #include <ctype.h>
+
 */
-int ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	if (0 <= c && c <= 127)
 		return (1);
@@ -9,10 +10,11 @@ int ft_isascii(int c)
 }
 
 /*
-int main(void)
+int	main(void)
 {
-	int c = '0';
+	int	c;
 
+	c = '0';
 	printf("%d\n",ft_isascii(c));
 	printf("%d\n",isascii(c));
 	return (0);

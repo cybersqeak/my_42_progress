@@ -1,5 +1,6 @@
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
+
 static size_t	count_words(const char *s, char c)
 {
 	size_t	count;
@@ -75,8 +76,7 @@ char	**ft_split(char const *s, char c)
 			i++;
 		if (i > word_start)
 		{
-			result[word_index] = word_dup(&s[word_start],
-					i - word_start);
+			result[word_index] = word_dup(&s[word_start], i - word_start);
 			if (!result[word_index])
 			{
 				free_split(result, word_index);
@@ -88,10 +88,10 @@ char	**ft_split(char const *s, char c)
 	result[word_index] = NULL;
 	return (result);
 }
-//maintest simpll
+// maintest simpll
 /*#include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
 static void	print_split(char **arr)
 {

@@ -1,27 +1,21 @@
-
+#include "libft.h"
 #include <stdint.h>
 #include <unistd.h>
 
-size_t  ft_strlen(const char *str)
+
+void	ft_putstr_fd(char *s, int fd)
 {
-    size_t    index = 0;
-    while (str[index])
-        index++;
-    return (index);
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+	write(1, "\n", 1);
 }
-
-void ft_putstr_fd(char *s, int fd)
+/*
+int	main(void)
 {
-    size_t bytes_length = ft_strlen(s) + 1;
-    write(fd,s,bytes_length);
-    write(1,"\n",2); 
+	char	str[] = "helloworld";
+
+	ft_putstr_fd(str,1);
+	return (0);
 }
-
-int main(void)
-{
-    char str[] = "helloworld";
-
-    ft_putstr_fd(str,1);
-    return (0);
-}
-
+*/
