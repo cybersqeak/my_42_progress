@@ -20,16 +20,13 @@ char	*create_ascii(long n, int elements, int sign)
 	while (n / 10 != 0)
 	{
 		ascii[elements - index] = (char)(n % 10) + '0';
-		printf("the char is %c\n", ascii[elements - index]);
 		n = n / 10;
 		index++;
 	}
 	ascii[elements - index] = (char)(n % 10) + '0';
-	printf("the char is %c\n", ascii[elements - index]);
 	index++;
 	if (elements - index == 0 && sign == NEGATIVE)
 	{
-		printf("i am here\n");
 		ascii[elements - index] = '-';
 		return (ascii);
 	}
@@ -60,7 +57,6 @@ char	*check_digits(int n)
 	}
 	num = num / 10;
 	count++;
-	printf("the digits and sign are %i:%i\n", count, sign);
 	return (create_ascii(set_n, count, sign));
 }
 

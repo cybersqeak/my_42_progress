@@ -15,7 +15,7 @@ t_list	*ft_lstlast(t_list *lst)
 	}
 	return (return_address);
 }
-
+/*
 // is it provided that i know how t_list structs? if not
 // i wouldnt do lst->next ... but stucked...
 int	main(void)
@@ -33,4 +33,4 @@ int	main(void)
 	printf("the  last node of s1 is %p\n", ft_lstlast(s1));
 	printf("it should be as the  address of s2 is %p\n", s2);
 	return (0);
-}
+}*/
