@@ -6,20 +6,25 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 07:44:46 by cmichele          #+#    #+#             */
-/*   Updated: 2026/06/26 07:44:46 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/06/26 10:10:01 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-#include <stdlib.h>
 
-size_t	ft_strlen(const char *str)
+#include <stdlib.h>
+#include "libft.h"
+
+static size_t		copy(char *dst, const char *src, size_t current_index)
 {
 	size_t	index;
 
 	index = 0;
-	while (str[index])
+	while (src[index])
+	{
+		dst[current_index] = src[index];
+		current_index++;
 		index++;
-	return (index);
+	}
+	return current_index;
 }
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -36,19 +41,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new_string = malloc(new_elements);
 	if (!new_string)
 		return (NULL);
-	while (s1[index] != '\0')
-	{
-		new_string[index_for_newstr] = s1[index];
-		index++;
-		index_for_newstr++;
-	}
-	index = 0;
-	while (s2[index] != '\0')
-	{
-		new_string[index_for_newstr] = s2[index];
-		index++;
-		index_for_newstr++;
-	}
+	index_for_newstr = copy(new_string, s1, index_for_newstr);
+	index_for_newstr = copy(new_string, s2, index_for_newstr);
 	new_string[index_for_newstr] = '\0';
 	return (new_string);
 }

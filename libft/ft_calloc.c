@@ -29,7 +29,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 /*
 int	main(void)
 {
-	int* p1 = calloc(4, sizeof(int));   
+	int* p1 = calloc(4, sizeof(int));
 		// allocate and zero out an array of 4 int
 	int* p2 = calloc(4, sizeof(int)); // same, naming the array type directly
 	int* p3 = ft_calloc(4, sizeof(char));     // same,

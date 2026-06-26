@@ -49,7 +49,7 @@ char	*check_digits(int n)
 	long	num;
 
 	num = (long)n;
-	count = 0   ;
+	count = 0;
 	sign = 1;
 	if (num < 0)
 	{

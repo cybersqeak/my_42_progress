@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 07:47:08 by cmichele          #+#    #+#             */
-/*   Updated: 2026/06/26 07:47:10 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/06/26 08:47:15 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(void)
 	const char *str1= "hellow3rld";
 	const char *str2 ="helloworld";
 	printf("the return (value of my strncmp :%d\n",ft_strncmp(str1,str2,6)));
-   printf("the return (value of real strncmp :%d\n",strncmp(str1,str2,6)));// if i put n value minus. the complier detect it,
 	but not on mine...
 	return (0);
 }

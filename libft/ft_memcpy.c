@@ -20,7 +20,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	if (!dest)
 		return (NULL);
-
 	d = (unsigned char *)dest;
 	s = (unsigned char *)src;
 	i = 0;
@@ -45,7 +44,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 //     printf("Copied elements: ");
 //      for (int i = 0; i < 3; i++) {
 //     //    printf("%s ",(char*)memcpy(dest, src + 4, 4
-	//	* sizeof(char)));// wtf did happen here?
+//	* sizeof(char)));// wtf did happen here?
 // 			printf("%d",dest2[i]);
 // 			printf("%c",',');
 
@@ -55,7 +54,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 //     	printf("Copied elements: ");
 //    for (int i = 0; i <3; i++) {
 //     //    printf("%s ",(char*)memcpy(dest, src + 4, 4
-	//	* sizeof(char)));// wtf did happen here?
+//	* sizeof(char)));// wtf did happen here?
 // 			printf("%d",dest[i]);
 // 			printf("%c",',');
 

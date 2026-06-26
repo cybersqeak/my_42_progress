@@ -6,14 +6,17 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 07:36:49 by cmichele          #+#    #+#             */
-/*   Updated: 2026/06/26 07:36:52 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/06/26 09:04:45 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 /*
 void	f(void *content)
 {
+	t_list	*tmp;
+
 	printf("the content address  of current Node is :%p\n", content);
 	printf("the content address  of current Node is :%s\n", (char *)content);
 		///  i write this because I know that i am using char * as an instance
@@ -22,17 +25,14 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*tmp;
 
-	tmp = lst;
-	if (tmp == NULL)
+	if (!lst || !f)
 		return ;
-	while (tmp->next != NULL)
+	tmp = lst;
+	while (tmp)
 	{
 		(*f)(tmp->content);
-			// why do i have to use pointer ? instead of just use f(tmp->content)?? it's same right?
 		tmp = tmp->next;
 	}
-	(*f)(tmp->content);
-		// why do i have to use pointer ? instead of just use f(tmp->content)?? it's same right?
 }
 /*
 int	main(void)
