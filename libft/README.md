@@ -1,4 +1,5 @@
-```md
+*This project has been created as part
+of the 42 curriculum by cmichele*
 # libft
 
 A custom C library developed as part of the **42 School** curriculum.
@@ -83,7 +84,7 @@ cc main.c -L. -lft
 
 ---
 
-## 📋 Implemented Functions
+##  Implemented Functions
 
 ### Character Functions
 
@@ -192,5 +193,5 @@ This project was completed as part of the 42 School curriculum and is intended f
 
 ## How AI was uesd
 
-I used a lot to ask if my current code is correct or safe. I make AI to only answer whether YES or NO untill I explicitly ask for hints... after completation of code. I offen asked for better code . 
+I used a lot to ask if my current code is correct or safe. I make AI to only answer whether YES or NO untill I explicitly ask for hints... after completation of code, I offen asked for better code . 
 
