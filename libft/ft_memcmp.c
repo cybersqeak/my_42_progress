@@ -21,8 +21,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	converted_s1 = (unsigned char *)s1;
 	converted_s2 = (unsigned char *)s2;
 	index = 0;
-	if (n == 0)
-		return (0);
 	while (index < n)
 	{
 		if (converted_s1[index] != converted_s2[index])
