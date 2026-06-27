@@ -6,14 +6,14 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 07:44:46 by cmichele          #+#    #+#             */
-/*   Updated: 2026/06/26 10:10:01 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/06/28 06:22:41 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
-static size_t		copy(char *dst, const char *src, size_t current_index)
+static size_t	copy(char *dst, const char *src, size_t current_index)
 {
 	size_t	index;
 
@@ -24,16 +24,15 @@ static size_t		copy(char *dst, const char *src, size_t current_index)
 		current_index++;
 		index++;
 	}
-	return current_index;
+	return (current_index);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new_string;
 	size_t	new_elements;
-	size_t	index;
 	size_t	index_for_newstr;
 
-	index = 0;
 	index_for_newstr = 0;
 	if (!s1 || !s2)
 		return (NULL);

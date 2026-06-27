@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 07:43:41 by cmichele          #+#    #+#             */
-/*   Updated: 2026/06/26 07:43:48 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/06/28 06:10:28 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,11 @@ static char	*word_dup(const char *start, size_t len)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**substitute(char const *s, char c, char **result, size_t i)
 {
-	char	**result;
-	size_t	i;
 	size_t	word_start;
-	size_t	word_count;
 	size_t	word_index;
 
-	if (!s)
-		return (NULL);
-	word_count = count_words(s, c);
-	result = malloc(sizeof(char *) * (word_count + 1));
-	if (!result)
-		return (NULL);
 	i = 0;
 	word_index = 0;
 	while (s[i])
@@ -99,6 +90,22 @@ char	**ft_split(char const *s, char c)
 	}
 	result[word_index] = NULL;
 	return (result);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**result;
+	size_t	word_count;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	word_count = count_words(s, c);
+	result = malloc(sizeof(char *) * (word_count + 1));
+	if (!result)
+		return (NULL);
+	i = 0;
+	return (substitute(s, c, result, i));
 }
 // maintest simpll
 /*#include <stdio.h>

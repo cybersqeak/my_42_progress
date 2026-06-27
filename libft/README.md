@@ -1,5 +1,5 @@
 ```md
-# 📚 libft
+# libft
 
 A custom C library developed as part of the **42 School** curriculum.
 
@@ -7,7 +7,7 @@ A custom C library developed as part of the **42 School** curriculum.
 
 ---
 
-## ✨ Features
+##  Features
 
 - Character classification functions
 - String manipulation functions
@@ -18,7 +18,7 @@ A custom C library developed as part of the **42 School** curriculum.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 
@@ -33,7 +33,7 @@ libft/
 
 ---
 
-## 🚀 Compilation
+##  Compilation
 
 Build the library:
 
@@ -61,7 +61,7 @@ make re
 
 ---
 
-## 📦 Usage
+## Usage
 
 Include the header file:
 
@@ -148,7 +148,7 @@ cc main.c -L. -lft
 
 ---
 
-## 💻 Example
+## Example
 
 ```c
 #include "libft.h"
@@ -169,7 +169,7 @@ cc main.c libft.a
 
 ---
 
-## 🎯 What I Learned
+## What I Learned
 
 During this project I practiced:
 
@@ -182,11 +182,15 @@ During this project I practiced:
 * Creating maintainable C code following the 42 Norm
 
 ---
+## Resources
 
-## 📄 License
+In this project I have learned a lot from geeksforgeeks.com and Artificial Inteligence.
+
+##  License
 
 This project was completed as part of the 42 School curriculum and is intended for educational purposes.
 
-```
-```
+## How AI was uesd
+
+I used a lot to ask if my current code is correct or safe. I make AI to only answer whether YES or NO untill I explicitly ask for hints... after completation of code. I offen asked for better code . 
 
