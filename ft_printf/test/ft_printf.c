@@ -11,7 +11,7 @@ int ft_printf(const char *format,...)
 	{	
 		printf("check insidents in info.insidents [");
 		for (int i = 0; i < info.count; i++)
-			printf("%c ",info.insidents[i]);
+			printf("%c",info.insidents[i]);
 		printf("]\n");
 		return 1;	
 	}

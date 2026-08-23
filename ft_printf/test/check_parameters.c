@@ -2,25 +2,25 @@
 
 int count_parameter(t_info *info)
 {
+	int i = 0;
 	
-	size_t *index;
+	int  *index = &i;
 	int c;
 
 	info->count = 0; 
-	*index = 0;
 	
 	while (info->format[*index] != '\0')
 	{
 		if (info->format[*index] == '%')
 		{
-				printf("inside index + 1 is; %c\n\n\n",info->format[*index+1]);
-				c = check_indent(info->format[*index+1]);
+				printf("inside index + 1 is; %c, %d\n\n\n",info->format[(*index)+1],info->format[(*index)+1]);
+				c = check_indent(info->format[(*index)+1]);
 				if (c != 0 && c != ERROR)	
-					info->count++;	
+					info->count++, (*index)++;	
 				else 
 					return ERROR; //input error	
 		}
-		index++;
+		(*index)++;
 	}
 	return (info->count);	
 }

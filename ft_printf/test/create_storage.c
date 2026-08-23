@@ -15,21 +15,22 @@ int	create_storage(t_info *info)
 
 int store_insidents(t_info *info)
 {
-	size_t index = 0;
-	size_t insidents_index = 0;
+	int i = 0;
+	int  *index = &i;
+	int insidents_index = 0;
 	int c;
 
-	while (info->format[index] != '\0')
+	while (info->format[*index] != '\0')
 	{
-		if (info->format[index] == '%')
+		if (info->format[*index] == '%')
 		{
-				c = check_indent(info->format[index+1]);
+				c = check_indent(info->format[(*index)+1]);
 				if (c != 0 && c != ERROR)	
-					info->insidents[insidents_index++] = c;	
+					info->insidents[insidents_index++] = c, (*index)++;
 				else 
 					return ERROR; //input error 	
 		}
-		index++;
+		(*index)++;
 	}
 	return 1;	
 }
