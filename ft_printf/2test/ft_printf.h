@@ -1,5 +1,5 @@
-#ifndef HEADER_H
-#define	HEADER_H
+#ifndef FT_PRINTF
+#define	FT_PRINTF
 
 #include <stdio.h>
 #include <unistd.h>
@@ -32,4 +32,8 @@ int scan_specifiers(t_info *info);
 int ft_printf(const char *format,...);
 
 int output_format(t_info *info,va_list args);
-#endif 
+
+
+
+int write_spe(const char c, void *args);
+#endif

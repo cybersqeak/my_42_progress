@@ -6,15 +6,13 @@ int ft_printf(const char *format,...)
 	
 	info = (t_info){0};
 	info.format = format;		
+    
+    va_list args;
+    va_start(args,format);
+	if (scan_specifiers(&info) != ERROR) // end up with assigned_specifiers in info->specifiers indexs
+        if (output_format(&info,args) != ERROR)
+            return (write(1,info.output_format,info.count));
 
-	if (check_parameter(&info) != ERROR)
-	{	
-		printf("check insidents in info.insidents [");
-		for (int i = 0; i < info.count; i++)
-			printf("%c",info.insidents[i]);
-		printf("]\n");
-		return 1;	
-	}
 	return ERROR;
 }
 

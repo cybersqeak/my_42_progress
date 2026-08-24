@@ -1,7 +1,9 @@
-#include "header.h"
+#include "ft_printf.h"
 
-int check_indent(const char c)
+int check_specifier(const char c)
 {
+
+    printf("\n in check_specifier  %c\n",c);
 	if (c == 'c')
 		return(int)'c';
 	else if (c == 's')
@@ -20,7 +22,7 @@ int check_indent(const char c)
 		return (int)'X';
 	else if (c == '%')
 		return (int)'%';
-	else 
+	else  
 		return ERROR;
 }
 

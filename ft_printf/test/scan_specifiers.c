@@ -1,10 +1,10 @@
 #include "header.h"
 
-int count_parameter(t_info *info)
+int count_specifier(t_info *info)
 {
 	int i = 0;
 	
-	int  *index = &i;
+    int  *index = &i;
 	int c;
 
 	info->count = 0; 
@@ -14,22 +14,23 @@ int count_parameter(t_info *info)
 		if (info->format[*index] == '%')
 		{
 				printf("inside index + 1 is; %c, %d\n\n\n",info->format[(*index)+1],info->format[(*index)+1]);
-				c = check_indent(info->format[(*index)+1]);
+				c = check_specifier(info->format[(*index)+1]);
 				if (c != 0 && c != ERROR)	
-					info->count++, (*index)++;	
+					info->specifier_count++, (*index)++;	
 				else 
 					return ERROR; //input error	
 		}
 		(*index)++;
-	}
-	return (info->count);	
+	
+    }
+    info->count = *index;//total format length
+	return 1;	
 }
 
-int check_parameter(t_info *info)
+int scan_specifiers(t_info *info)
 {
-	if (count_parameter(info) != ERROR)
-		if (create_storage(info) != ERROR)
-			if (store_insidents(info) != ERROR)	
+	if (count_specifier(info) != ERROR)
+		if (assign_specifiers(info) != ERROR)
 				return 1; //succuess 
 	return ERROR;
 }
