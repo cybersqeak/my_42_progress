@@ -3,7 +3,7 @@
 int check_specifier(const char c)
 {
 
-    printf("\n in check_specifier  %c\n",c);
+//    printf("\n in check_specifier character is  %c\n ",c);
 	if (c == 'c')
 		return(int)'c';
 	else if (c == 's')
@@ -23,7 +23,7 @@ int check_specifier(const char c)
 	else if (c == '%')
 		return (int)'%';
 	else  
-		return ERROR;
+		return NONE;
 }
 
 

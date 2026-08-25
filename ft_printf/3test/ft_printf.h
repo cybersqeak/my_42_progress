@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 #define ERROR -1
+#define NONE  97
 int check_specifier(const char c);
 int ft_printf(const char *format,...);
 
@@ -16,7 +17,11 @@ int ft_printf(const char *format,...);
 int writing(const char *str,int *index,int *specifier);
 
 
-
-
-int write_char(char *c);
+int ft_strlen(const char *str);
+int write_str(char *str,int *index);
+int write_char(int c,int *index);
+int write_pointer(void *ptr, int *index);
+int write_digits(int d, int *index);
+int unsigned_write(unsigned int i, int *index);
+char *ft_itoa(int n);
 #endif
