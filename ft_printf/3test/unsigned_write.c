@@ -2,7 +2,7 @@
 
 int unsigned_write(unsigned int i, int *index)
 {
-    char *tmp = ft_itoa((int)i);
+    char *tmp = unsigneditoa(i);
     int c;
     (*index)++;
     c = write(1,tmp,ft_strlen(tmp));

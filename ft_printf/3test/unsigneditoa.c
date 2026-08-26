@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,13 +7,12 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 07:35:03 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/26 07:20:04 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/25 11:24:20 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#define NEGATIVE -1
 
 static char	*create_ascii(long n, int elements, int sign)
 {
@@ -31,16 +31,11 @@ static char	*create_ascii(long n, int elements, int sign)
 		index++;
 	}
 	ascii[elements - index] = (char)(n % 10) + '0';
-	index++;
-	if (elements - index == 0 && sign == NEGATIVE)
-	{
-		ascii[elements - index] = '-';
-		return (ascii);
-	}
+
 	return (ascii);
 }
 
-static char	*check_digits(int n)
+static char	*check_digits(unsigned int n)
 {
 	int		count;
 	int		sign;
@@ -49,13 +44,6 @@ static char	*check_digits(int n)
 
 	num = (long)n;
 	count = 0;
-	sign = 1;
-	if (num < 0)
-	{
-		count++;
-		sign = NEGATIVE;
-		num = (-1) * num;
-	}
 	set_n = num;
 	while (num / 10 != 0)
 	{
@@ -67,7 +55,7 @@ static char	*check_digits(int n)
 	return (create_ascii(set_n, count, sign));
 }
 
-char	*ft_itoa(int n)
+char	*unsigneditoa(unsigned int n)
 {
 	return (check_digits(n));
 }

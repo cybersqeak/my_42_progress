@@ -23,5 +23,10 @@ int write_char(int c,int *index);
 int write_pointer(void *ptr, int *index);
 int write_digits(int d, int *index);
 int unsigned_write(unsigned int i, int *index);
+int pointer_write(void *ptr, int *index);
+int hex_write(unsigned int x, int *index);
+int HEX_write(unsigned int x, int *index);
+int per_write(int *index);
+char	*unsigneditoa(unsigned int n);
 char *ft_itoa(int n);
 #endif
