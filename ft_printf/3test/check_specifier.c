@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_specifier.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/26 11:48:13 by cmichele          #+#    #+#             */
+/*   Updated: 2026/08/26 11:49:39 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int check_specifier(const char c)
 {
-
-//    printf("\n in check_specifier character is  %c\n ",c);
 	if (c == 'c')
 		return(int)'c';
 	else if (c == 's')
