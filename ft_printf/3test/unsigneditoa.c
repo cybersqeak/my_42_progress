@@ -6,12 +6,11 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:40 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/26 11:49:44 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/27 07:09:59 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 static char	*create_ascii(long n, int elements, int sign)
 {
@@ -30,7 +29,6 @@ static char	*create_ascii(long n, int elements, int sign)
 		index++;
 	}
 	ascii[elements - index] = (char)(n % 10) + '0';
-
 	return (ascii);
 }
 

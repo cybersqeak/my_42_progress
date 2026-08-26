@@ -6,21 +6,20 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:57 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/26 11:49:45 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/27 08:29:35 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int write_str(char *str, int *index)
+int	s_w(char *str, int *index)
 {
-    (*index)++;
-    return write(1,str,ft_strlen(str));
+	(*index)++;
+	return (write(1, str, ft_strlen(str)));
 }
 
-int write_char(int c, int *index)
+int	c_w(int c, int *index)
 {
-    (*index)++;
-    return write(1,&c,1);
+	(*index)++;
+	return (write(1, &c, 1));
 }
-

@@ -6,34 +6,32 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:13 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/26 11:49:39 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/27 07:26:58 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int check_specifier(const char c)
+int	check_specifier(const char c)
 {
 	if (c == 'c')
-		return(int)'c';
+		return ('c');
 	else if (c == 's')
-		return (int)'s';
+		return ('s');
 	else if (c == 'p')
-		return (int)'p';
+		return ('p');
 	else if (c == 'd')
-		return (int)'d';
+		return ('d');
 	else if (c == 'i')
-		return (int)'i';
+		return ('i');
 	else if (c == 'u')
-		return (int)'u';
+		return ('u');
 	else if (c == 'x')
-		return (int)'x';
+		return ('x');
 	else if (c == 'X')
-		return (int)'X';
+		return ('X');
 	else if (c == '%')
-		return (int)'%';
-	else  
-		return NONE;
+		return ('%');
+	else
+		return (NONE);
 }
-
-

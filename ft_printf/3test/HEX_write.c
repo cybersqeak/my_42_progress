@@ -6,37 +6,35 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:10 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/26 11:49:32 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/27 08:30:30 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int write_HEX(unsigned int x,int *bytes)
+static int	whex(unsigned int x, int *bytes)
 {
-    
-    const char *hexa = "0123456789ABCDEF";
+	const char	*hexa = "0123456789ABCDEF";
 
-    if (x / 16 > 15)
-    {
-        write_HEX(x / 16,bytes);
-        (*bytes) += write(1,hexa + (x % 16),1);
-        return 1;
-    }
-   (*bytes) += write(1,hexa+(x/16),1);
-   (*bytes) += write(1,hexa+(x%16),1);
-    return 1;
+	if (x / 16 > 15)
+	{
+		whex(x / 16, bytes);
+		(*bytes) += write(1, hexa + (x % 16), 1);
+		return (1);
+	}
+	(*bytes) += write(1, hexa + (x / 16), 1);
+	(*bytes) += write(1, hexa + (x % 16), 1);
+	return (1);
 }
 
-int HEX_write(unsigned int x, int *index)
+int	uph_w(unsigned int x, int *index)
 {
-    int b = 0;
-    int *bytes = &b;
+	int	b;
+	int	*bytes;
 
-    (*index)++;
-    
-//    write(1,"geez\n",5); 
-    write_HEX(x,bytes);
-    return *bytes;
+	b = 0;
+	bytes = &b;
+	(*index)++;
+	whex(x, bytes);
+	return (*bytes);
 }
-
