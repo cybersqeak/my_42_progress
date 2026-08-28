@@ -6,35 +6,28 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:00 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 08:30:03 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:34:24 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	write_hex(unsigned int x, int *bytes)
+static void	write_hex(unsigned int x, t_info *info)
 {
 	const char	*hexa = "0123456789abcdef";
+	int			pre_bytes;
 
-	if (x / 16 > 15)
-	{
-		write_hex(x / 16, bytes);
-		(*bytes) += write(1, hexa + (x % 16), 1);
-		return (1);
-	}
-	(*bytes) += write(1, hexa + (x / 16), 1);
-	(*bytes) += write(1, hexa + (x % 16), 1);
-	return (1);
+	pre_bytes = *(info->bytes);
+	if (x >= 16)
+		write_hex(x / 16, info);
+	*(info->bytes) += write(1, hexa + (x % 16), 1);
+	if (*(info->bytes) < pre_bytes)
+		info->error_flag = -1;
 }
 
-int	h_w(unsigned int x, int *index)
+void	h_w(unsigned int x, t_info *info)
 {
-	int	b;
-	int	*bytes;
 
-	b = 0;
-	bytes = &b;
-	(*index)++;
-	write_hex(x, bytes);
-	return (*bytes);
+	*(info->index)++;
+	write_hex(x, info);
 }

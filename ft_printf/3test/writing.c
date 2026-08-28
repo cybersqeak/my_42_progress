@@ -6,34 +6,30 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:03 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 07:12:34 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:55:59 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	writing(const char *str, int *index, int *specifier)
+void	writing(t_info *info)
 {
-	int	i;
-	int	bytes;
-
-	i = *index;
-	bytes = 0;
-	while (str[i])
+	while (info->format[*(info->index)])
 	{
-		if (str[i] == '%')
+		int pre_bytes = *(info->bytes);
+		if (info->format[*(info->index)] == '%')
 		{
-			*specifier = check_specifier(str[i + 1]);
-			if (*specifier != NONE)
-			{
-				i++;
-				*index = i;
+			*(info->specifier) = check_specifier(info->format[*(info->index) + 1]);
+			if (*(info->specifier) != NONE)
 				break ;
-			}
 		}
-		bytes += write(1, &str[i], 1);
-		(i)++;
+		*(info->bytes) += write(1, &info->format[*(info->index)], 1);
+		if (*(info->bytes) < pre_bytes)
+		{
+			info->error_flag = -1;
+			return ;
+		}
+		*(info->index)++;
 	}
-	*index = i;
-	return (bytes);
+	return ;
 }

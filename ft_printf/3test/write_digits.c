@@ -6,20 +6,27 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:00 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 08:30:44 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:52:20 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	d_w(int d, int *index)
+void d_w(int d, t_info *info)
 {
 	char	*tmp;
-	int		c;
+	int		pre_bytes;
 
+	pre_bytes = *(info->bytes);
+	*(info->index)++;
 	tmp = ft_itoa(d);
-	(*index)++;
-	c = write(1, tmp, ft_strlen(tmp));
+	if (!tmp)
+	{
+		info->error_flag = -1;
+		return ;
+	}
+	*(info->bytes) += write(1, tmp, ft_strlen(tmp));
 	free(tmp);
-	return (c);
+	if (*(info->bytes) < pre_bytes)
+		info->error_flag = -1;
 }

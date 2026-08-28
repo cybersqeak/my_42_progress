@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:59:33 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 08:31:30 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:42:24 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,22 @@ typedef struct s_info
 	int			*specifier;
 	const char	*format;
 	va_list		args;
+	int			error_flag;
 }				t_info;
 
 int				check_specifier(const char c);
 int				ft_printf(const char *format, ...);
-int				writing(const char *str, int *index, int *specifier);
+void			writing(t_info *info);
 int				ft_strlen(const char *str);
-int				s_w(char *str, int *index);
-int				c_w(int c, int *index);
-int				p_w(void *ptr, int *index);
-int				d_w(int d, int *index);
-int				u_w(unsigned int i, int *index);
-int				h_w(unsigned int x, int *index);
-int				uph_w(unsigned int x, int *index);
-int				per_write(int *index);
+void			s_w(const char *str, t_info *info);
+void			c_w(int  c, t_info *info);
+void			p_w(void *p, t_info *info);
+void			d_w(int d, t_info *info);
+void			u_w(unsigned int ld, t_info *info);
+void			h_w(unsigned int x, t_info *info);
+void			uph_w(unsigned int x, t_info *info);
+void			per_write(t_info *info);
 char			*unsigneditoa(unsigned int n);
 char			*ft_itoa(int n);
+int				check_error(t_info *info);
 #endif

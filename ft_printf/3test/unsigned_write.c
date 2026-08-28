@@ -6,20 +6,22 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:36 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 08:31:20 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:37:57 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	u_w(unsigned int i, int *index)
+void	u_w(unsigned int i, t_info *info)
 {
 	char	*tmp;
-	int		c;
+	int		pre_bytes;
 
+	pre_bytes = *(info->bytes);
 	tmp = unsigneditoa(i);
-	(*index)++;
-	c = write(1, tmp, ft_strlen(tmp));
+	*(info->index)++;
+	*(info->bytes) += write(1, tmp, ft_strlen(tmp));
 	free(tmp);
-	return (c);
+	if (*(info->bytes) < pre_bytes)
+		info->error_flag = -1;
 }

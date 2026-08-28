@@ -6,14 +6,17 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:30 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 07:09:46 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:35:51 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	per_write(int *index)
+void	per_write(t_info *info)
 {
-	(*index)++;
-	return (write(1, "%", 1));
+	int pre_bytes = *(info->bytes);
+	*(info->index)++;
+	*(info->bytes) += write(1, "%", 1);
+	if (*(info->bytes) < pre_bytes)
+		info->error_flag = -1;
 }

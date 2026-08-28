@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:19 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 08:29:07 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:57:12 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,33 @@ static void	assign(int *index, int *bytes, int *spec, t_info *info)
 	info->specifier = spec;
 }
 
-static void	loop(t_info *info)
+static int	loop(t_info *info)
 {
 	while (info->format[*(info->index)] != '\0')
 	{
-		*(info->bytes) += writing(info->format, info->index, info->specifier);
+		writing(info);
+		if (check_error(info))
+			return -1;
 		if (*(info->specifier) == 'c')
-			*(info->bytes) += c_w(va_arg(info->args, int), info->index);
+			c_w(va_arg(info->args, int), info);
 		else if (*(info->specifier) == 's')
-			*(info->bytes) += s_w(va_arg(info->args, char *), info->index);
+			s_w(va_arg(info->args, char *), info);
 		else if (*(info->specifier) == 'p')
-			*(info->bytes) += p_w(va_arg(info->args, void *), info->index);
+			p_w(va_arg(info->args, void *), info);
 		else if (*(info->specifier) == 'd' || *(info->specifier) == 'i')
-			*(info->bytes) += d_w(va_arg(info->args, int), info->index);
+			d_w(va_arg(info->args, int), info);
 		else if (*(info->specifier) == 'u')
-			*(info->bytes) += u_w(va_arg(info->args, unsigned int),
-					info->index);
+			u_w(va_arg(info->args, unsigned int),info);
 		else if (*(info->specifier) == 'x')
-			*(info->bytes) += h_w(va_arg(info->args, unsigned int),
-					info->index);
+			h_w(va_arg(info->args, unsigned int),info);
 		else if (*(info->specifier) == 'X')
-			*(info->bytes) += uph_w(va_arg(info->args, int), info->index);
+			uph_w(va_arg(info->args, int), info);
 		else if (*(info->specifier) == '%')
-			*(info->bytes) += per_write(info->index);
-		*(info->specifier) = 0;
+			per_write(info);
+		if (check_error(info))
+			return -1;
 	}
+	return 1;
 }
 
 int	ft_printf(const char *format, ...)
@@ -51,6 +53,7 @@ int	ft_printf(const char *format, ...)
 	int		bytes;
 	int		spec;
 	int		index;
+	int		result;
 	t_info	info;
 
 	index = 0;
@@ -59,8 +62,11 @@ int	ft_printf(const char *format, ...)
 	assign(&index, &bytes, &spec, &info);
 	info.format = format;
 	va_start(info.args, format);
-	loop(&info);
+	result = loop(&info);
 	va_end(info.args);
+	if (result == -1)
+		return -1;
+	printf("hello\n");
 	return (bytes);
 }
 

@@ -6,38 +6,39 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:33 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/27 08:29:48 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 11:37:22 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	whex(unsigned long long p, int *bytes)
+static void	whex(unsigned long long p, t_info *info)
 {
 	const char	*hexa = "0123456789abcdef";
+	int			pre_bytes;
 
-	if (p / 16 > 15)
-	{
-		whex(p / 16, bytes);
-		(*bytes) += write(1, hexa + (p % 16), 1);
-		return (1);
-	}
-	(*bytes) += write(1, hexa + (p / 16), 1);
-	(*bytes) += write(1, hexa + (p % 16), 1);
-	return (1);
+	pre_bytes = *(info->bytes);
+	if (p >= 16)
+		whex(p >> 4, info);
+	*(info->bytes) += write(1, &hexa[p & 15], 1);
+	if (*(info->bytes) < pre_bytes)
+		info->error_flag = -1;
 }
 
-int	p_w(void *ptr, int *index)
+void	p_w(void *ptr, t_info *info)
 {
 	unsigned long long	p;
-	int					b;
-	int					*bytes;
+	int					pre_bytes;
 
+	pre_bytes = *(info->bytes);
 	p = (unsigned long long)ptr;
-	b = 0;
-	bytes = &b;
-	(*index)++;
-	(*bytes) += write(1, "0x", 2);
-	whex(p, bytes);
-	return (*bytes);
+	*(info->index)++;
+	*(info->bytes) += write(1, "0x", 2);
+	if (*(info->bytes) < pre_bytes)
+	{
+		info->error_flag = -1;
+		return ;
+	}
+	whex(p, info);
+	return ;
 }
