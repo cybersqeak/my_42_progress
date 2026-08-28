@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:03 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 15:43:46 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:03:09 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	writing(t_info *info)
 		{
 			*(info->specifier) = check_specifier(info->format[*(info->index) + 1]);
 			if (*(info->specifier) != NONE)
+			{
+				*(info->index) = *(info->index) + 1;
 				break ;
+			}
 		}
 		*(info->bytes) += write(1, &info->format[*(info->index)], 1);
 		if (*(info->bytes) < pre_bytes)

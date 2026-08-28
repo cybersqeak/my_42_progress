@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:14 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 16:15:37 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:04:22 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	main(void)
 	 
 	printf("=== %%x / %%X ===\n");
 	ft_printf("%i\n", 16);
-	/*printf("\n%d\n", printf("%x\n", 16));
+	printf("\n%d\n", printf("%x\n", 16));
 	printf("\n%d\n", ft_printf("%X\n", 32));
 	printf("\n%d\n", printf("%X\n", 32));
 	printf("\n%d\n", ft_printf("%x\n", -1));
 	printf("\n%d\n", printf("%x\n", -1));
 	printf("\n%d\n", ft_printf("%X\n", 4096));
-	printf("\n%d\n", printf("%X\n", 4096)); */
-/* 
+	printf("\n%d\n", printf("%X\n", 4096)); 
+
 printf("\n\n%d\n\n\n", ft_printf("1000 in hexa is %X\n", 1000));
 	printf("\n\n%d\n\n\n", printf("1000 in hexa is %X\n", 1000));
 	char	s;
@@ -98,7 +98,6 @@ printf("\n\n%d\n\n\n", ft_printf("1000 in hexa is %X\n", 1000));
 	printf("=== mixed ===\n");
 	printf("\n%d\n", ft_printf("%s is %d, hex: %x, ptr: %p\n", "Bob", 30, 30, &s));
 	printf("\n%d\n", printf("%s is %d, hex: %x, ptr: %p\n", "Bob", 30, 30, &s));
-*/ 
 	return (0);
 }
  
