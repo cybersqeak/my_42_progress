@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:03 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 11:55:59 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 15:43:46 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	writing(t_info *info)
 			info->error_flag = -1;
 			return ;
 		}
-		*(info->index)++;
+		*(info->index) = *(info->index) + 1;
 	}
 	return ;
 }

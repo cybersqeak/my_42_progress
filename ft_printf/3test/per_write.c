@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:30 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 11:35:51 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 16:24:38 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	per_write(t_info *info)
 {
-	int pre_bytes = *(info->bytes);
-	*(info->index)++;
+	int	pre_bytes;
+
+	pre_bytes = *(info->bytes);
+	*(info->index) = *(info->index) + 1;
 	*(info->bytes) += write(1, "%", 1);
 	if (*(info->bytes) < pre_bytes)
 		info->error_flag = -1;
+	*(info->specifier) = NONE;
 }

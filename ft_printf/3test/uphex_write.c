@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:10 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 11:39:29 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 16:23:43 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	whex(unsigned int x, t_info *info)
 
 void	uph_w(unsigned int x, t_info *info)
 {
-	*(info->index)++;
+	*(info->index) = *(info->index) + 1;
 	whex(x, info);
+	*(info->specifier) = NONE;
 }
