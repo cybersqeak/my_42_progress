@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:59:33 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 11:42:24 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:42:22 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_info
 {
-	int			*index;
+	size_t			*index;
 	int			*bytes;
 	int			*specifier;
 	const char	*format;

@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:33 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 16:24:51 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:29:04 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	whex(unsigned long long p, t_info *info)
 	*(info->bytes) += write(1, &hexa[p & 15], 1);
 	if (*(info->bytes) < pre_bytes)
 		info->error_flag = -1;
-	*(info->specifier) = NONE;
 }
 
 void	p_w(void *ptr, t_info *info)
@@ -34,6 +33,12 @@ void	p_w(void *ptr, t_info *info)
 	pre_bytes = *(info->bytes);
 	p = (unsigned long long)ptr;
 	*(info->index) = *(info->index) + 1;
+	if (!ptr)
+	{
+		*(info->bytes) += write(1, "(nil)", 5);
+		*(info->specifier) = NONE;
+		return ;
+	}
 	*(info->bytes) += write(1, "0x", 2);
 	if (*(info->bytes) < pre_bytes)
 	{
@@ -41,5 +46,6 @@ void	p_w(void *ptr, t_info *info)
 		return ;
 	}
 	whex(p, info);
+	*(info->specifier) = NONE;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:19 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 16:01:21 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:44:37 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	ft_printf(const char *format, ...)
 	va_end(info.args);
 	if (result == -1)
 		return -1;
-//	printf("\nhello\n");
 	return (bytes);
 }
 
