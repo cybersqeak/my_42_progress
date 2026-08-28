@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:33 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 17:29:04 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 18:09:54 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	p_w(void *ptr, t_info *info)
 	if (!ptr)
 	{
 		*(info->bytes) += write(1, "(nil)", 5);
+		if (*(info->bytes) < pre_bytes)
+			info->erro_flag = -1;
 		*(info->specifier) = NONE;
 		return ;
 	}

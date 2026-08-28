@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:10 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 16:23:43 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 18:01:34 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	whex(unsigned int x, t_info *info)
 {
-	int	pre_bytes = *(info->bytes);
+	int			pre_bytes;
 	const char	*hexa = "0123456789ABCDEF";
-	
+
+	pre_bytes = *(info->bytes);
 	if (x >= 16)
 		whex(x >> 4, info);
 	*(info->bytes) += write(1, &hexa[x & 0xf], 1);
 	if (*(info->bytes) < pre_bytes)
-			info->error_flag = -1;
-
+		info->error_flag = -1;
 }
 
 void	uph_w(unsigned int x, t_info *info)

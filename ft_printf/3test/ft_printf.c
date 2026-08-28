@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:48:19 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 17:44:37 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 18:15:13 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	loop(t_info *info)
 	{
 		writing(info);
 		if (check_error(info))
-			return -1;
+			return (-1);
 		if (*(info->specifier) == 'c')
 			c_w(va_arg(info->args, int), info);
 		else if (*(info->specifier) == 's')
@@ -35,17 +35,17 @@ static int	loop(t_info *info)
 		else if (*(info->specifier) == 'd' || *(info->specifier) == 'i')
 			d_w(va_arg(info->args, int), info);
 		else if (*(info->specifier) == 'u')
-			u_w(va_arg(info->args, unsigned int),info);
+			u_w(va_arg(info->args, unsigned int), info);
 		else if (*(info->specifier) == 'x')
-			h_w(va_arg(info->args, unsigned int),info);
+			h_w(va_arg(info->args, unsigned int), info);
 		else if (*(info->specifier) == 'X')
 			uph_w(va_arg(info->args, int), info);
 		else if (*(info->specifier) == '%')
 			per_write(info);
 		if (check_error(info))
-			return -1;
+			return (-1);
 	}
-	return 1;
+	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -59,13 +59,14 @@ int	ft_printf(const char *format, ...)
 	index = 0;
 	bytes = 0;
 	spec = 0;
+	info.error_flag = 0;
 	assign(&index, &bytes, &spec, &info);
 	info.format = format;
 	va_start(info.args, format);
 	result = loop(&info);
 	va_end(info.args);
 	if (result == -1)
-		return -1;
+		return (-1);
 	return (bytes);
 }
 

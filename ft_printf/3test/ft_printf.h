@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:59:33 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 17:42:22 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 18:07:19 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_info
 {
-	size_t			*index;
+	int			*index;
 	int			*bytes;
 	int			*specifier;
 	const char	*format;
@@ -36,7 +36,7 @@ int				ft_printf(const char *format, ...);
 void			writing(t_info *info);
 int				ft_strlen(const char *str);
 void			s_w(const char *str, t_info *info);
-void			c_w(int  c, t_info *info);
+void			c_w(int c, t_info *info);
 void			p_w(void *p, t_info *info);
 void			d_w(int d, t_info *info);
 void			u_w(unsigned int ld, t_info *info);

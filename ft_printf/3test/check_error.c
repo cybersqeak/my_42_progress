@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/28 18:05:04 by cmichele          #+#    #+#             */
+/*   Updated: 2026/08/28 18:12:57 by cmichele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int check_error(t_info *info)
+int	check_error(t_info *info)
 {
 	if (info->error_flag == -1)
-		return 1;
-	else
-		return 0;
+		return (1);
+	return (0);
 }

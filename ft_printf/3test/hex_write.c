@@ -6,7 +6,7 @@
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 11:47:00 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/28 16:23:44 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/08/28 18:07:35 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	write_hex(unsigned int x, t_info *info)
 
 void	h_w(unsigned int x, t_info *info)
 {
-
 	*(info->index) = *(info->index) + 1;
 	write_hex(x, info);
 	*(info->specifier) = NONE;

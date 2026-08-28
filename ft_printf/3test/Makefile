@@ -6,7 +6,7 @@
 #    By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/26 11:47:26 by cmichele          #+#    #+#              #
-#    Updated: 2026/08/27 09:13:24 by cmichele         ###   ########.fr        #
+#    Updated: 2026/08/28 17:58:56 by cmichele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
@@ -26,7 +26,8 @@ SRC = ft_itoa.c \
 	  per_write.c \
 	  writing.c \
 	  ft_strlen.c \
-	  check_specifier.c 
+	  check_specifier.c\
+	  check_error.c
 
 OBJ = $(SRC:.c=.o)
 
