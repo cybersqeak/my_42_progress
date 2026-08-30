@@ -2,7 +2,8 @@
 #include <fcntl.h>
 int main() {
 int	fd = open("foo.txt", O_RDONLY);
-printf("%s\n",go_next_line(fd));
+printf("%d\n",printf("%s",go_next_line(fd)));
+//printf("hello");
 
 	return 0;
 }
