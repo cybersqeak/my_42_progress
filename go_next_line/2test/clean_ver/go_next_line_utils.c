@@ -1,5 +1,53 @@
 #include "go_next_line.h"
 
+
+
+int init(t_sys *sys, int fd)
+{
+	sys->fd = fd;
+	sys->buff = malloc(BUFFER_SIZE + 1);
+	if (!sys->buff)
+		return -1; //error
+	if (read_one_chunk(sys) == -1)
+		return -1; // error
+	sys->buff[sys->count]='\0';// need a terminator!!!
+	sys->flag = 1; //whole file saved to buff
+	return 1;
+}
+void truncate_tail(t_sys *sys, size_t pos)
+{
+	size_t index = 0;
+	char *tmp = malloc(pos + 1 + 1); //BS - (BS -(pos + 1)) + nullteminator
+	if (!tmp)
+		return ;
+	while (index <= pos)
+	{
+		tmp[index] = sys-buff[index];
+		index++;
+	}
+	free(sys->buff);
+	sys->buff = tmp;
+}
+
+
+int check_newline(t_sys *sys,size_t *index)
+{
+	size_t i = 0;
+	while (sys->buff[i])
+	{
+		if (sys->buff[i] == '\n')
+		{
+			printf("found newline character in current buff! at index %zu\n",i);
+			truncate_tail(sys, i);
+			sys->index = i;
+			return 1;
+		}
+		i++;
+	}
+	printf("No newline character detected at current buff\n");
+	return 0;
+}
+
 int update_buffer(t_sys *sys)
 {
 	size_t i;
@@ -20,6 +68,7 @@ int update_buffer(t_sys *sys)
 	return 1;
 }
 
+
 ssize_t read_one_chunk(t_sys *sys)
 {
 	ssize_t pre_count;
@@ -28,23 +77,14 @@ ssize_t read_one_chunk(t_sys *sys)
 	pre_count = sys->count;
 	rd = read(sys->fd, &sys->buff[sys->count] , BUFFER_SIZE); // rd holds how many bytes read so max is bufsize
 	sys->count += rd;
-	printf("last rd was %ld, And count is now %ld\n", rd, sys->count);
 	if (sys->count <= pre_count) // i think this prevent from inf loop in next outher if statement
 	{
 		if (sys->count == pre_count) //end
-		{
-			printf("lady! about to flash!!\n");
-			sleep(1);
 			return 1; // success!
-		}
 		return -1; //error
 	}
 	if (sys->count % BUFFER_SIZE != 0)  //this alone cause inf loop for certain case for sure
-	{
-		printf("boy! about to flash!!\n");
-		sleep(1);
 		return 1;
-	}
 	if(update_buffer(sys) == -1)
 		return -1;
 	return read_one_chunk(sys);
