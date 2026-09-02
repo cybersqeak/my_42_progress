@@ -10,7 +10,7 @@
 typedef struct s_sys
 {
 	ssize_t count;
-	char *buff[BUFFER_SIZE*4];
+	char buff[BUFFER_SIZE*4];
 	char *current_buff;
 	int fd;
 	int flag;
@@ -23,7 +23,7 @@ ssize_t read_one_chunk(t_sys *sys);
 int	update_buffer(t_sys *sys);
 int	check_buffer(t_sys *sys);
 void	truncate_tail(t_sys *sys, size_t pos);
-int check_newline(t_sys *sys,size_t *index);
+int check_newline(t_sys *sys);
 int init(t_sys *sys, int fd);
 
 #endif

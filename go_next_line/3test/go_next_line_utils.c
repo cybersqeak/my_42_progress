@@ -21,18 +21,18 @@ void truncate_tail(t_sys *sys, size_t pos)
 		return ;
 	while (index <= pos)
 	{
-		tmp[index] = sys-buff[index];
+		tmp[index] = sys->buff[index];
 		index++;
 	}
-	free(sys->buff);
-	sys->buff = tmp;
+	//free(sys->buff);
+	sys->current_buff = tmp;
 }
 
 
-int check_newline(t_sys *sys,size_t *index)
+int check_newline(t_sys *sys)
 {
 	size_t i = 0;
-	while (sys->buff[i])
+	while (i < BUFFER_SIZE)
 	{
 		if (sys->buff[i] == '\n')
 		{

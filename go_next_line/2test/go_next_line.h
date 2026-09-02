@@ -11,6 +11,7 @@ typedef struct s_sys
 {
 	ssize_t count;
 	char *buff;
+    char *saved_buff;
 	int fd;
 
 }t_sys;
@@ -20,5 +21,7 @@ char *go_next_line(int fd);
 ssize_t read_one_chunk(t_sys *sys);
 int	update_buffer(t_sys *sys);
 int	check_buffer(t_sys *sys);
+int save(t_sys *sys);
+
 
 #endif
