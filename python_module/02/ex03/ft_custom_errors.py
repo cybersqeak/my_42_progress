@@ -37,18 +37,31 @@ def test():
             Plant("flowj", 100, 102,2),
             Plant("sqeak", 100, 12,-1)
      ]
+    collect_errors : list[GardenError] = []
+    
     for  i in plants :
         try:
              i.check_age()
         except PlantError as e:
              print(f"caught an error plant{i},  {e}")
+             collect_errors.append(e)
         try:
              i.check_watering()
         except WaterError as e:
              print(f"caught an error plant{i},  {e}")
+             collect_errors.append(e)
         print(f"test plant {i} done!\n") 
+    print("Testing catching all garden errors...")
+    for err in collect_errors:
+        try:
+            raise err
+        except GardenError as e:
+            print(f"Caught an Error: {e}")
 
-
+    print(isinstance(collect_errors[0], PlantError))    # True
+    print(isinstance(collect_errors[0], GardenError))   # True  <- this is the key one
+    print(isinstance(collect_errors[0], Exception))     # True
+    print(isinstance(collect_errors[0], WaterError))    # False <- siblings, NOT related
 
 if __name__ == "__main__":
     print("=== Custom Garden Error Demo ===")
@@ -56,5 +69,4 @@ if __name__ == "__main__":
 
     print("test has been finished")
         
-
-
+    
