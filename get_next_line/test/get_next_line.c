@@ -24,7 +24,6 @@ char *get_tail(char *stash)
     tail = cut_remain(stash, index, start);
     old_stash = stash;
     stash = ft_dup(tail,ft_strlen(tail));
-    free(tail);
     free(old_stash);
     return stash;
 }
@@ -40,7 +39,6 @@ char *get_line(char *stash)
 
     L = cut(stash, len);
     line = ft_dup(L, ft_strlen(L));
-    free(L);
     return line;
 }
     

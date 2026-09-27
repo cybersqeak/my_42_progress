@@ -18,6 +18,7 @@ char *ft_dup(char *src,ssize_t size)
         index++;
     }
     dup[index] = '\0';
+    free(src);
     return dup;
 }
     
@@ -45,7 +46,7 @@ char *cut(char *src, ssize_t len)
     char *tmp;
     ssize_t i;
 
-    tmp = malloc(sizeof(char) * (len + 1));
+    tmp = malloc(sizeof(char) * (len + 1 + 1));
     if (!tmp)
         return NULL;
     
@@ -98,22 +99,16 @@ char *ft_strjoin(char *s1, char *s2)
 
     if (!s1 && !s2)
         return NULL;
-    if (!s1 && s2)
-        return s2;
-    if (s1 && !s2)
-        return s1;
-
     tmp = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
     if (!tmp)
         return NULL;
 
-    while (s1[i])
+    while (s1 && s1[i])
     {
         tmp[i] = s1[i];
         i++;
     }
-
-    while(s2[j])
+    while(s2 && s2[j])
     {
         tmp[i + j] = s2[j];
         j++;
