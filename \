@@ -1,0 +1,61 @@
+detecting format specifier is completed
+
+by using a function check_specifier in check_parameter you can read what is written right after the specifier latter '%'
+in the function, as you can see, it gives an error code if the character was invalid (like '\0' or random char not valid)
+
+int check_indent(const char c)
+{
+	if (c == 'c')
+		return(int)'c';
+	else if (c == 's')
+		return (int)'s';
+	else if (c == 'p')
+		return (int)'p';
+	else if (c == 'd')
+		return (int)'d';
+	else if (c == 'i')
+		return (int)'i';
+	else if (c == 'u')
+		return (int)'u';
+	else if (c == 'x')
+		return (int)'x';
+	else if (c == 'X')
+		return (int)'X';
+	else if (c == '%')
+		return (int)'%';
+	else
+		return ERROR;
+}
+
+i also fixed the index++ problem that reads same indexed '%' twice that caused an uninteded  ERROR.
+
+next i need to make a way to write a letter that specifier is demanding.
+
+
+
+
+goodbye from sqeak
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Sun Aug 23 11:00:38 2026 +0900
+# Committer: Cesare Takeo Bruno Micheletto <cmichele@c1r1s3.42tokyo.jp>
+#
+# On branch main
+# Your branch is ahead of 'origin/main' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   a.out
+#	modified:   check_parameters.c
+#	modified:   create_storage.c
+#	modified:   ft_printf.c
+#	modified:   main.c
+#
+# Changes not staged for commit:
+#	modified:   a.out
+#	modified:   main.c
+#
+# Untracked files:
+#	../../something/
+#

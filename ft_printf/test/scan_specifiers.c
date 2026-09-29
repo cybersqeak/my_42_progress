@@ -1,6 +1,6 @@
 #include "header.h"
 
-int count_specifier(t_info *info)
+void count_specifier(t_info *info)
 {
 	int i = 0;
 	
@@ -15,10 +15,8 @@ int count_specifier(t_info *info)
 		{
 				printf("inside index + 1 is; %c, %d\n\n\n",info->format[(*index)+1],info->format[(*index)+1]);
 				c = check_specifier(info->format[(*index)+1]);
-				if (c != 0 && c != ERROR)	
+				if (c != NONE)	
 					info->specifier_count++, (*index)++;	
-				else 
-					return ERROR; //input error	
 		}
 		(*index)++;
 	
@@ -29,8 +27,8 @@ int count_specifier(t_info *info)
 
 int scan_specifiers(t_info *info)
 {
-	if (count_specifier(info) != ERROR)
-		if (assign_specifiers(info) != ERROR)
-				return 1; //succuess 
-	return ERROR;
+    count_specifier(info);
+    if (assign_specifiers(info) == ERROR)
+        return ERROR; //ERROR
+    return 1; 
 }

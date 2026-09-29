@@ -21,7 +21,7 @@ int check_specifier(const char c)
 	else if (c == '%')
 		return (int)'%';
 	else 
-		return ERROR;
+		return NONE;
 }
 
 

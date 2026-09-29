@@ -1,13 +1,21 @@
+
+
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */ /*   get_next_line.c                                    :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */ /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                                            */ /*                                                        :::      ::::::::   */ /*   get_next_line.c                                    :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 08:17:45 by cmichele          #+#    #+#             */
-/*   Updated: 2026/09/29 09:44:56 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/09/29 08:38:18 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int check_space(char *memory,size_t size)
+{ if (size == ft_strlen(memory) + 1)
+		return 1;
+	return 0;
+}
 
 ssize_t	ft_strlen(char *str)
 {
@@ -30,7 +38,9 @@ char	*get_tail(char *stash)
 
 	index = 0;
 	while (stash[index])
-	{ if (stash[index] == '\n') {
+	{
+		if (stash[index] == '\n')
+		{
 			start = index + 1;
 			index++;
 			break ;
@@ -64,31 +74,33 @@ char	*read_buffer(int fd, char *stash)
 {
 	char	*buff;
 	char	*tmp;
-	ssize_t	bytes;
+	ssize_t pre_bytes;
+	ssize_t	bytes = 0;
 
-	buff = malloc(BUFFER_SIZE *42 + 1);
+	buff = malloc(BUFFER_SIZE*10 + 1);
 	if (!buff)
 		return (free(stash), NULL);
 	while (1)
 	{
-		bytes = read(fd, buff, BUFFER_SIZE);
-		if (bytes <= 0)
-			break ;
-		buff[bytes] = '\0';
-		tmp = stash;
-		stash = ft_strjoin(tmp, buff);
-		free(tmp);
-		if (stash && ft_strchr(stash, '\n'))
+		bytes += read(fd, buff, BUFFER_SIZE);
+		buff[bytes]="\0";
+		if (bytes <= pre_bytes)
+			break;
+		if (bytes >= BUFFER_SIZE*10 + 1 )
 		{
-			stash = ft_dup(stash, ft_strlen(stash));
-			return (free(buff), stash);
+			tmp = buff;
+			buff = malloc(ft_strlen(tmp) * 2);
+			if (!buff)
+				return NULL;
+			buff = ft_dup(tmp,ft_strlen(tmp));
+			free(tmp);
 		}
-		stash = ft_dup(stash, ft_strlen(stash));
+
+
+
+
+
 	}
-	free(buff);
-	if (bytes < 0)
-		return (free(stash), NULL);
-	return (stash);
 }
 
 char	*get_next_line(int fd)
@@ -106,3 +118,4 @@ char	*get_next_line(int fd)
 	stash = get_tail(stash);
 	return (line);
 }
+

@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 #define ERROR -1
+#define NONE 33333
 typedef struct s_info
 {
 	const char *format;

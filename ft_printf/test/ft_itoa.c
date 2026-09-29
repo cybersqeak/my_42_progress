@@ -5,16 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 11:46:06 by cmichele          #+#    #+#             */
-/*   Updated: 2026/08/30 19:02:42 by cmichele         ###   ########.fr       */
+/*   Created: 2026/06/26 07:35:03 by cmichele          #+#    #+#             */
+/*   Updated: 2026/06/26 07:35:08 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
 #define NEGATIVE -1
 
-static char	*create_ascii(long n, int elements, int sign)
+char	*create_ascii(long n, int elements, int sign)
 {
 	int		index;
 	char	*ascii;
@@ -40,7 +41,7 @@ static char	*create_ascii(long n, int elements, int sign)
 	return (ascii);
 }
 
-static char	*check_digits(int n)
+char	*check_digits(int n)
 {
 	int		count;
 	int		sign;
@@ -71,3 +72,18 @@ char	*ft_itoa(int n)
 {
 	return (check_digits(n));
 }
+/*
+int	main(int argc, char **argv)
+{
+	int		num;
+	char	*addr;
+
+	if (argc == 2)
+	{
+		num = ft_atoi(argv[1]);
+		addr = ft_itoa(num);
+		printf("the ascii returned is %s\n", addr);
+		free(addr);
+		return (0);
+	}
+}*/
