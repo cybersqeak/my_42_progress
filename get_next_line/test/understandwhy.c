@@ -1,14 +1,4 @@
-
-
-/* ************************************************************************** */
-/*                                                                            */ /*                                                        :::      ::::::::   */ /*   get_next_line.c                                    :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
-/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/29 08:17:45 by cmichele          #+#    #+#             */
-/*   Updated: 2026/09/29 08:38:18 by cmichele         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+geez...  
 #include "get_next_line.h"
 
 int check_space(char *memory,size_t size)
@@ -73,34 +63,55 @@ char	*get_line(char *stash)
 char	*read_buffer(int fd, char *stash)
 {
 	char	*buff;
-	char	*tmp;
-	ssize_t pre_bytes;
+	char	*old_stash;
+	char	*old_buff;
+	ssize_t cap;
 	ssize_t	bytes = 0;
-
+	ssize_t n = 0;
+		
 	buff = malloc(BUFFER_SIZE*10 + 1);
 	if (!buff)
 		return (free(stash), NULL);
+	cap = (ssize_t)(BUFFER_SIZE * 10 + 1);
 	while (1)
 	{
-		bytes += read(fd, buff, BUFFER_SIZE);
-		buff[bytes]="\0";
-		if (bytes <= pre_bytes)
-			break;
-		if (bytes >= BUFFER_SIZE*10 + 1 )
+		if (cap < bytes + BUFFER_SIZE)
 		{
-			tmp = buff;
-			buff = malloc(ft_strlen(tmp) * 2);
+			printf("hello i am here at updating buffer if statement\n");
+			old_buff = buff;
+			buff = malloc(bytes * 2);
+			cap = cap * 2;
 			if (!buff)
 				return NULL;
-			buff = ft_dup(tmp,ft_strlen(tmp));
-			free(tmp);
+			buff = ft_strjoin(old_buff,NULL);
+			free(old_buff);
 		}
-
-
-
-
-
+		n = read(fd, buff + bytes, BUFFER_SIZE);
+		bytes += n;
+		buff[bytes]='\0';
+		if (n <= 0)
+			break;
+		if (buff && ft_strchr(buff, '\n'))
+		{
+			printf("hello i am here at null founded  if statement\n");
+			old_stash = stash;
+			stash = ft_strjoin(old_stash,buff);
+			free(old_stash);
+			stash = ft_dup(stash,ft_strlen(stash));
+			free(buff);
+			return stash;
+		}
 	}
+	if (n < 0)
+		return free(buff), NULL;
+
+	printf("hello i am here at not null found statement\n");
+	old_stash = stash;
+	stash = ft_strjoin(old_stash,buff);
+	free(old_stash);
+	stash = ft_dup(stash,ft_strlen(stash));
+	free(buff);
+	return stash;
 }
 
 char	*get_next_line(int fd)
@@ -119,3 +130,4 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+ i mean what is wrong!?!?

@@ -1,13 +1,28 @@
+
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */ /*   get_next_line.c                                    :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */ /*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                                            */ /*                                                        :::      ::::::::   */ /*   get_next_line.c                                    :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
+/*   By: cmichele <cmichele@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 08:17:45 by cmichele          #+#    #+#             */
-/*   Updated: 2026/09/29 09:44:56 by cmichele         ###   ########.fr       */
+/*   Updated: 2026/09/29 08:38:18 by cmichele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int update_buff(char *old_buff,char *new_buff)
+{ 
+	size_t index;
+
+	index = 0;
+	while (old_buff && old_buff[index])
+	{
+		new_buff[index] = old_buff[index];
+		index++;
+	}
+	new_buff[index] = '\0';
+	return index + 1; //copied bytes
+}
 
 ssize_t	ft_strlen(char *str)
 {
@@ -30,7 +45,9 @@ char	*get_tail(char *stash)
 
 	index = 0;
 	while (stash[index])
-	{ if (stash[index] == '\n') {
+	{
+		if (stash[index] == '\n')
+		{
 			start = index + 1;
 			index++;
 			break ;
@@ -63,32 +80,55 @@ char	*get_line(char *stash)
 char	*read_buffer(int fd, char *stash)
 {
 	char	*buff;
-	char	*tmp;
-	ssize_t	bytes;
-
-	buff = malloc(BUFFER_SIZE *42 + 1);
+	char	*old_stash;
+	char	*old_buff;
+	ssize_t cap;
+	ssize_t	bytes = 0;
+	ssize_t n = 0;
+		
+	buff = malloc(BUFFER_SIZE*10 + 1);
 	if (!buff)
 		return (free(stash), NULL);
+	cap = (ssize_t)(BUFFER_SIZE * 10 + 1);
 	while (1)
 	{
-		bytes = read(fd, buff, BUFFER_SIZE);
-		if (bytes <= 0)
-			break ;
-		buff[bytes] = '\0';
-		tmp = stash;
-		stash = ft_strjoin(tmp, buff);
-		free(tmp);
-		if (stash && ft_strchr(stash, '\n'))
+		if (cap < bytes + BUFFER_SIZE + 1)
 		{
-			stash = ft_dup(stash, ft_strlen(stash));
-			return (free(buff), stash);
+//			printf("hello i am here at updating buffer if statement\n");
+			old_buff = buff;
+			cap = cap * 2;
+			buff = malloc(cap);
+			if (!buff)
+				return NULL;
+			update_buff(old_buff,buff);
+			free(old_buff);
 		}
-		stash = ft_dup(stash, ft_strlen(stash));
+		n = read(fd, buff + bytes, BUFFER_SIZE);
+		if (n <= 0)
+			break;
+		bytes += n;
+		buff[bytes]='\0';
+		if (buff && ft_strchr(buff, '\n'))
+		{
+//			printf("hello i am here at null founded  if statement\n");
+			old_stash = stash;
+			stash = ft_strjoin(old_stash,buff);
+			free(old_stash);
+			stash = ft_dup(stash,ft_strlen(stash));
+			free(buff);
+			return stash;
+		}
 	}
+	if (n < 0)
+		return free(buff), NULL;
+
+//	printf("hello i am here at not null found statement\n");
+	old_stash = stash;
+	stash = ft_strjoin(old_stash,buff);
+	free(old_stash);
+	stash = ft_dup(stash,ft_strlen(stash));
 	free(buff);
-	if (bytes < 0)
-		return (free(stash), NULL);
-	return (stash);
+	return stash;
 }
 
 char	*get_next_line(int fd)
@@ -106,3 +146,4 @@ char	*get_next_line(int fd)
 	stash = get_tail(stash);
 	return (line);
 }
+
