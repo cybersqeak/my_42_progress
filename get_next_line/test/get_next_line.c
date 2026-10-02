@@ -5,9 +5,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 08:17:45 by cmichele          #+#    #+#             */
 /*   Updated: 2026/09/29 08:38:18 by cmichele         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*                                                                            */ /* ************************************************************************** */
 #include "get_next_line.h"
 
 int update_buff(char *old_buff,char *new_buff)
@@ -104,10 +102,11 @@ char	*read_buffer(int fd, char *stash)
 			free(old_buff);
 		}
 		n = read(fd, buff + bytes, BUFFER_SIZE);
-		if (n <= 0)
-			break;
 		bytes += n;
 		buff[bytes]='\0';
+		//printf("%lu bytes\n\n",n);
+		if (n <= 0)
+			break;
 		if (buff && ft_strchr(buff, '\n'))
 		{
 //			printf("hello i am here at null founded  if statement\n");
@@ -137,6 +136,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
+	//printf("the fd is %i\n\n",fd);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash = read_buffer(fd, stash);

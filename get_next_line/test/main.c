@@ -41,8 +41,9 @@ int main(void)
 
 	char	*new;
 	int		fd1;
-	fd1 = open("big_line_no_nl", O_RDONLY);
-	//fd1 = open("test.txt", O_RDONLY);
+	//fd1 = open("big_line_with_nl", O_RDONLY);
+	fd1 = open("test.txt", O_RDONLY);
+	//fd1 = open("empty", O_RDONLY);
 	new = get_next_line(fd1);
 	printf("%d\n", printf("%s", new));
 	free(new);
