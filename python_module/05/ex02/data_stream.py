@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 from typing import Any
-class NotNumberError(Exception):
-    pass
 
 class DataProcessor(ABC):
 
@@ -18,7 +16,6 @@ class DataProcessor(ABC):
         self._output_count += 1
         self._total -= 1
         return rank,value 
-
     
     @abstractmethod
     def validate(self, data:Any)->bool:
@@ -40,6 +37,7 @@ class NumericProcessor(DataProcessor):
     def ingest(self, data: int | float | list[int | float])->None:
         if not self.validate(data):
             raise ValueError("Improper numeric data")
+
         if isinstance(data, list):
             items = data
         else :
@@ -47,6 +45,7 @@ class NumericProcessor(DataProcessor):
 
         for item in items:
             self._storage.append(str(item))
+            print(self._storage)
             self._total += 1
 
 class TextProcessor(DataProcessor):
@@ -97,7 +96,32 @@ class LogProcessor(DataProcessor):
             self._storage.append(f"{item['log_level']}: {item['log_message']}")
             self._total += 1
 
+class DataStream(ABC):
+    
+    def check_types(self, x: Any):
+        if (isinstance(x, list));
+            for i in x:
+                return all(check_types(i))
+        elif isinstance(x, (int | float)) and not  isinstance(x, bool):
+                        return f"NumericProcessor"
+        elif isinstance(x, str):
+            return f"TextProcessor"
+        elif isinstance(x, dict) and "log_level" in x and "log_message" in x and all(isinstance(k, str) and isinstance(v, str) for k,v in x.items()):
+            return f"LogProcessor"
+    def register_processor(self, proc:DataProcessor) ->None:
+        pass
 
+    def process_stream(self, stream : list[Any]) ->None:
+        for i in stream:
+            if self.check_types(i) == NumericProcessor:
+                self.register_processor(
+
+                        
+                        
+        
+
+    def print_processors_state(self)->None:
+        pass
 
 
 if __name__ == "__main__":
@@ -134,3 +158,15 @@ if __name__ == "__main__":
     for _ in range(2):
         rank, value = log.output()
         print(f" Log entry {rank}: {value}")
+
+
+
+
+    stream = [42,43,5]
+    try :
+        for i in stream:
+          
+    except ValueError as e:
+        print(f"got error : {e}")
+    
+    #test = num._storage() 
