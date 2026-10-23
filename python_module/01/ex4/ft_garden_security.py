@@ -1,74 +1,67 @@
 class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
+        # Defaults first, so the attributes always exist
+        self._name: str = name
+        self._height: float = 0.0
+        self._age: int = 0
 
         try:
-            self.name = name
-            self.validate(height, "Height")
-            self.height = height
-            flag = 0
-
+            self._validate(height, "height")
+            self._height = float(height)
         except ValueError as e:
-            flag = 1
-            print(f"{self.name}: {e}")
+            print(f"{self._name.capitalize()}: {e}")
 
         try:
-            self.validate(age, "Age")
-            self.age = age
-
+            self._validate(age, "age")
+            self._age = age
         except ValueError as e:
-            flag = 1
-            print(f"{self.name}: {e}")
+            print(f"{self._name.capitalize()}: {e}")
 
-        if flag == 1:
-            if  self.height is None and self.age is None:
-                self.height = 42
-                self.age = 42
-            elif not self.height and self.age:
-                self.height = 42
-            elif self.height and not self.age:
-                self.age = 42
+        print("Plant created: ", end="")
+        self.show()
 
-        print(f"Plant created: {self.name}: {self.height}cm, {self.age} days old")
+    def _validate(self, value: float, label: str) -> None:
+        if value < 0:
+            raise ValueError(f"Error, {label} can't be negative")
 
     def show(self) -> None:
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+        print(f"{self._name.capitalize()}: "
+              f"{self._height}cm, {self._age} days old")
 
-    def grow(self) -> None:
-        for i in range(1, 8):
-            print(f" === Day {i} ===")
-            self.height += 0.8
-            self.age += 1
-            height_ab: float = round(self.height, 3)
-            print(f"{self.name}: {height_ab}cm, {self.age} days old")
+    def get_height(self) -> float:
+        return self._height
 
-    def derivative(self) -> None:
-        delta = round((self.height - self.height_init), 3)
-        print(f"Growth this week: {delta}cm")
+    def get_age(self) -> int:
+        return self._age
 
-    def set_height(self, up_height) -> None:
+    def set_height(self, new_height: float) -> None:
         try:
-            self.validate(up_height, "Height")
-            self.height = up_height
+            self._validate(new_height, "height")
+            self._height = float(new_height)
+            print(f"Height updated: {new_height}cm")
         except ValueError as e:
-            print(f"{self.name}: {e}")
+            print(f"{self._name.capitalize()}: {e}")
+            print("Height update rejected")
 
-
-    def set_age(self, up_age) -> None:
+    def set_age(self, new_age: int) -> None:
         try:
-            self.validate(up_age, "Age")
-            self.age = up_age
+            self._validate(new_age, "age")
+            self._age = new_age
+            print(f"Age updated: {new_age} days")
         except ValueError as e:
-            print(f"{self.name}: {e}")
+            print(f"{self._name.capitalize()}: {e}")
+            print("Age update rejected")
 
-
-    def validate(self, data:int | float, dtype: str) -> None:
-        if data < 0:
-            raise ValueError(f"Error, {dtype} can't be negative\n{dtype} update rejected")
 
 if __name__ == "__main__":
-    rose = Plant("rose", -4, 3)
-    rose.set_height(-1)
-    rose.set_age(32)
+    print("=== Garden Security System ===")
+    rose = Plant("rose", 15, 10)
+    print()
+    rose.set_height(25)
+    rose.set_age(30)
+    print()
+    rose.set_height(-5)
+    rose.set_age(-5)
+    print()
+    print("Current state: ", end="")
     rose.show()
-
-

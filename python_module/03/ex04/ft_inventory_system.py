@@ -26,9 +26,7 @@ def print_info(inventory:dict[str,int]):
             least = name
     print(f"Item most abundant:{most} with quantity {inventory[most]}")
     print(f"Item least abundant:{least} with quantity {inventory[least]}")
-        
-     
-    
+
 def parse_items(args:list[str]) -> dict[str,int]:
 
     inventory : dict[str, int] = {}
