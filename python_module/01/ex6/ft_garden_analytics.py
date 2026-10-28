@@ -1,11 +1,30 @@
 class Plant:
+
+    class stats:
+        def __init__(self) -> None:
+            self._growcount = 0
+            self._showcount = 0
+            self._agecount = 0
+        
+        def grow_add(self) -> None:
+            self._growcount += 1
+
+        def show_add(self) -> None:
+            self._showcount += 1
+
+        def age_add(self) -> None:
+            self._agecount += 1
+
+        def display(self) -> None:
+            print(f"Stats: {self._growcount} grow, {self._agecount} age, "
+                  f"{self._showcount} show")
+
+
     def __init__(self, name: str, height: float, age: int) -> None:
+        self._stats = Plant.stats()
         self._name: str = name
         self._height: float = 0.0
         self._age: int = 0
-        self._showcount = 0
-        self._agecount = 0
-        self._growcount = 0
         try:
             self._validate(height, "height")
             self._height = height
@@ -24,40 +43,16 @@ class Plant:
             raise ValueError(f"Error, {label} can't be negative")
 
     def show(self) -> None:
-        self._showcount += 1
+        self._stats._showcount += 1
         print(f"{self._name.capitalize()}: "
               f"{round(self._height, 3)}cm, {self._age} days old")
 
-    def get_height(self) -> float:
-        return self._height
-
-    def get_age(self) -> int:
-        return self._age
-
-    def set_height(self, new_height: float) -> None:
-        try:
-            self._validate(new_height, "height")
-            self._height = new_height
-            print(f"Height updated: {new_height}cm")
-        except ValueError as e:
-            print(f"{self._name.capitalize()}: {e}")
-            print("Height update rejected")
-
-    def set_age(self, new_age: int) -> None:
-        try:
-            self._validate(new_age, "age")
-            self._age = new_age
-            print(f"Age updated: {new_age} days")
-        except ValueError as e:
-            print(f"{self._name.capitalize()}: {e}")
-            print("Age update rejected")
-
     def grow(self, plus_height: float) -> None:
-        self._growcount += 1
+        self._stats._growcount += 1
         self._height += plus_height
 
     def age(self, plus_age: int) -> None:
-        self._agecount += 1
+        self._stats._agecount += 1
         self._age += plus_age
 
     @staticmethod
@@ -72,14 +67,8 @@ class Plant:
     @classmethod
     def test_plant(cls):
          print(f"Unknown Plant: "
-              f"{cls.UK_height}cm, {cls.UK_age} days old")
+               f"{cls.UK_height}cm, {cls.UK_age} days old")
 
-    class stats:
-        def show_stats(self):
-            print(f"Stats: {self._growcount} grow, "
-                  f"{self._agecount} age, "
-                  f"{self._showcount} show")
-            
 
 
 class Flower(Plant):
@@ -163,6 +152,7 @@ if __name__ == "__main__":
     print(f"Is 400 days more than a year? -> {Plant.check_age(400)}")
     print()
     print("=== Flower")
+    
     rose = Flower("rose", 15.0, 10, "red")
     print("[asking the rose to bloom]")
     rose.bloom()
@@ -196,6 +186,8 @@ if __name__ == "__main__":
     print()
     print()
     print("testing accessing to stats")
-    Plant.stats.show_stats()
+    stats1 = Plant.stats()
+    stats1.display()
+
     
 
